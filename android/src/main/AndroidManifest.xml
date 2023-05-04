@@ -1,3 +1,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ar.com.anura.plugins.contacts">
+
+    <application>
+
+    <activity android:name=".CreateContactActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.CREATE_CONTACT_ACTIVITY" />
+        <category android:name="android.intent.category.DEFAULT" />
+      </intent-filter>
+    </activity>
+
+    <activity android:name=".AddToExistingContactActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.ADD_TO_EXISTING_CONTACT_ACTIVITY" />
+        <category android:name="android.intent.category.DEFAULT" />
+      </intent-filter>
+    </activity>
+
+    <activity android:name=".EditContactActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.EDIT_CONTACT_ACTIVITY" />
+        <category android:name="android.intent.category.DEFAULT" />
+      </intent-filter>
+    </activity>
+
+  </application>
+
 </manifest>
