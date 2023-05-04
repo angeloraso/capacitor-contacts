@@ -37,7 +37,9 @@ public class ContactsPlugin extends Plugin {
 
     @PluginMethod
     public void checkPermissions(PluginCall call) {
-        super.checkPermissions(call);
+        JSObject permissionsResultJSON = new JSObject();
+        permissionsResultJSON.put(CONTACTS_PERMISSION, getNotificationPermissionText());
+        call.resolve(permissionsResultJSON);
     }
 
     @PluginMethod
