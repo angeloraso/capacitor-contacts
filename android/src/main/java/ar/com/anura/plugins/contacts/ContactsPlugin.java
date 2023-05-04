@@ -63,41 +63,6 @@ public class ContactsPlugin extends Plugin {
     }
 
     @PluginMethod
-    public void checkPermission(PluginCall call) {
-        if (getActivity().isFinishing()) {
-            String appFinishingMsg = getActivity().getString(R.string.app_finishing);
-            call.reject(appFinishingMsg);
-            return;
-        }
-
-        JSObject res = new JSObject();
-        res.put("granted", contactsPermissionIsGranted());
-        call.resolve(res);
-    }
-
-    @PluginMethod
-    public void requestPermission(PluginCall call) {
-        if (getActivity().isFinishing()) {
-            String appFinishingMsg = getActivity().getString(R.string.app_finishing);
-            call.reject(appFinishingMsg);
-            return;
-        }
-
-        if (contactsPermissionIsGranted()) {
-            JSObject res = new JSObject();
-            res.put("granted", true);
-            call.resolve(res);
-        } else {
-            requestPermissionForAlias("contacts", call, "contactsPermissionCallback");
-        }
-    }
-
-    @PermissionCallback
-    private void contactsPermissionCallback(PluginCall call) {
-        getPermissions(call);
-    }
-
-    @PluginMethod
     public void getContacts(PluginCall call) {
         if (getActivity().isFinishing()) {
             String appFinishingMsg = getActivity().getString(R.string.app_finishing);

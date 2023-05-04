@@ -4,11 +4,11 @@ import { WebPlugin } from '@capacitor/core';
 import type { Contact, ContactsPlugin, Group, PermissionStatus } from './definitions';
 
 export class ContactsWeb extends WebPlugin implements ContactsPlugin {
-  async checkPermission(): Promise<PermissionStatus> {
+  async checkPermissions(): Promise<PermissionStatus> {
     throw this.unimplemented('Not implemented on web.');
   }
 
-  async requestPermission(): Promise<PermissionStatus> {
+  async requestPermissions(): Promise<PermissionStatus> {
     throw this.unimplemented('Not implemented on web.');
   }
 

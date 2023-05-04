@@ -13,8 +13,8 @@ npx cap sync
 
 <docgen-index>
 
-* [`checkPermission()`](#checkpermission)
-* [`requestPermission()`](#requestpermission)
+* [`checkPermissions()`](#checkpermissions)
+* [`requestPermissions()`](#requestpermissions)
 * [`getContacts()`](#getcontacts)
 * [`createContact(...)`](#createcontact)
 * [`addToExistingContact(...)`](#addtoexistingcontact)
@@ -29,10 +29,10 @@ npx cap sync
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
-### checkPermission()
+### checkPermissions()
 
 ```typescript
-checkPermission() => Promise<PermissionStatus>
+checkPermissions() => Promise<PermissionStatus>
 ```
 
 **Returns:** <code>Promise&lt;<a href="#permissionstatus">PermissionStatus</a>&gt;</code>
@@ -40,10 +40,10 @@ checkPermission() => Promise<PermissionStatus>
 --------------------
 
 
-### requestPermission()
+### requestPermissions()
 
 ```typescript
-requestPermission() => Promise<PermissionStatus>
+requestPermissions() => Promise<PermissionStatus>
 ```
 
 **Returns:** <code>Promise&lt;<a href="#permissionstatus">PermissionStatus</a>&gt;</code>
