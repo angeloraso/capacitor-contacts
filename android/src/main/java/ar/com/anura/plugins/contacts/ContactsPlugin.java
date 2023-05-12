@@ -86,26 +86,22 @@ public class ContactsPlugin extends Plugin {
             return;
         }
 
-        if (!call.hasOption("number")) {
+        String contactNumber = call.getString("number");
+        if (contactNumber == null) {
             call.reject("The number is required");
             return;
         }
 
-        String contactNumber = call.getString("number");
-        String contactName;
-        if (!call.hasOption("name")) {
+        String contactName = call.getString("name");
+        if (contactName == null) {
             contactName = "";
-        } else {
-            contactName = call.getString("name");
         }
 
         Intent intent = new Intent("android.intent.action.CREATE_CONTACT_ACTIVITY");
         intent.setPackage(getContext().getPackageName());
 
         intent.putExtra("number", contactNumber);
-        if (call.hasOption("name")) {
-            intent.putExtra("name", contactName);
-        }
+        intent.putExtra("name", contactName);
 
         startActivityForResult(call, intent, "createContactResult");
     }
@@ -131,7 +127,8 @@ public class ContactsPlugin extends Plugin {
             return;
         }
 
-        if (!call.hasOption("number")) {
+        String contactNumber = call.getString("number");
+        if (contactNumber == null) {
             call.reject("The number is required");
             return;
         }
@@ -179,7 +176,8 @@ public class ContactsPlugin extends Plugin {
             return;
         }
 
-        if (!call.hasOption("number")) {
+        String contactNumber = call.getString("number");
+        if (contactNumber == null) {
             call.reject("The number is required");
             return;
         }
@@ -200,10 +198,8 @@ public class ContactsPlugin extends Plugin {
 
     @PluginMethod
     public void deleteContact(PluginCall call) {
-        String contactId;
-        if (call.hasOption("contactId")) {
-            contactId = call.getString("contactId");
-        } else {
+        String contactId = call.getString("contactId");
+        if (contactId == null) {
             call.reject("The contact id is required");
             return;
         }
