@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ar.com.anura.plugins.contacts">
+    >
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
@@ -14,7 +14,7 @@
           <category android:name="android.intent.category.DEFAULT" />
         </intent-filter>
       </activity>
-  
+ 
       <activity
         android:name=".AddToExistingContactActivity"
         android:exported="true">
