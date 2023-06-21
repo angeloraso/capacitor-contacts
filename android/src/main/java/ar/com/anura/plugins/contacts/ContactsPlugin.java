@@ -112,7 +112,7 @@ public class ContactsPlugin extends Plugin {
             return;
         }
 
-        if (result.getData() != null) {
+        if (result.getResultCode() == RESULT_OK) {
             call.resolve();
         } else {
             call.reject("Contact was not saved");
@@ -147,7 +147,7 @@ public class ContactsPlugin extends Plugin {
             return;
         }
 
-        if (result.getData() != null) {
+        if (result.getResultCode() == RESULT_OK) {
             call.resolve();
         } else {
             call.reject("Contact was not saved");
