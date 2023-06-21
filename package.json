@@ -1,6 +1,6 @@
 {
   "name": "@anuradev/capacitor-contacts",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Capacitor plugin to get and modify mobile contacts",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
