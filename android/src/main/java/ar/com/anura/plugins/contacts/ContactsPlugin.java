@@ -1,5 +1,7 @@
 package ar.com.anura.plugins.contacts;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
