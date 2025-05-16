@@ -31,9 +31,9 @@
       },
       {
         "name": "getContacts",
-        "signature": "() => Promise<{ path: string; }>",
+        "signature": "() => Promise<{ fileName: string; count: number; }>",
         "parameters": [],
-        "returns": "Promise<{ path: string; }>",
+        "returns": "Promise<{ fileName: string; count: number; }>",
         "tags": [],
         "docs": "",
         "complexTypes": [],
@@ -89,9 +89,9 @@
       },
       {
         "name": "getGroups",
-        "signature": "() => Promise<{ path: string; count: number; }>",
+        "signature": "() => Promise<{ fileName: string; count: number; }>",
         "parameters": [],
-        "returns": "Promise<{ path: string; count: number; }>",
+        "returns": "Promise<{ fileName: string; count: number; }>",
         "tags": [],
         "docs": "",
         "complexTypes": [],

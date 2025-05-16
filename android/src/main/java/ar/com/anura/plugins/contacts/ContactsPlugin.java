@@ -6,7 +6,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import androidx.activity.result.ActivityResult;
-import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PermissionState;
 import com.getcapacitor.Plugin;
@@ -17,11 +16,7 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 import com.getcapacitor.annotation.Permission;
 import com.getcapacitor.annotation.PermissionCallback;
 
-import org.json.JSONException;
-
 import java.io.IOException;
-import java.util.Map;
-import java.util.Set;
 
 @CapacitorPlugin(
     name = "Contacts",
@@ -78,9 +73,10 @@ public class ContactsPlugin extends Plugin {
             return;
         }
 
-        String path = contacts.getContacts();
+        JSObject groups = contacts.getContacts();
         JSObject res = new JSObject();
-        res.put("path", path);
+        res.put("path", groups.getString("fileName"));
+        res.put("count", groups.getInteger("count"));
         call.resolve(res);
     }
 
@@ -170,7 +166,7 @@ public class ContactsPlugin extends Plugin {
 
         JSObject groups = contacts.getGroups();
         JSObject res = new JSObject();
-        res.put("path", groups.getString("path"));
+        res.put("path", groups.getString("fileName"));
         res.put("count", groups.getInteger("count"));
         call.resolve(res);
     }

@@ -12,7 +12,7 @@ export class ContactsWeb extends WebPlugin implements ContactsPlugin {
     throw this.unimplemented('Not implemented on web.');
   }
 
-  async getContacts(): Promise<{ path: string }> {
+  async getContacts(): Promise<{ fileName: string, count: number }> {
     throw this.unimplemented('Not implemented on web.');
   }
   
@@ -28,7 +28,7 @@ export class ContactsWeb extends WebPlugin implements ContactsPlugin {
     throw this.unimplemented('Not implemented on web.');
   }
 
-  async getGroups(): Promise<{ path: string, count: number }> {
+  async getGroups(): Promise<{ fileName: string, count: number }> {
     throw this.unimplemented('Not implemented on web.');
   }
 }

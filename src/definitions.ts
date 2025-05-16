@@ -5,14 +5,14 @@ export interface PermissionStatus {
 }
 
 export interface Contact {
-  contactId: string;
-  displayName?: string;
-  phoneNumbers: PhoneNumber[];
+  id: string;
+  name?: string;
+  phones: PhoneNumber[];
   emails: EmailAddress[];
-  photoThumbnail?: string;
-  organizationName?: string;
-  organizationRole?: string;
   birthday?: string;
+  organization?: string;
+  role?: string;
+  photo?: string;
 }
 export interface Group {
   groupId: string;
@@ -34,9 +34,9 @@ export interface EmailAddress {
 export interface ContactsPlugin {
   checkPermissions(): Promise<PermissionStatus>;
   requestPermissions(): Promise<PermissionStatus>;
-  getContacts(): Promise<{ path: string}>;
+  getContacts(): Promise<{ fileName: string, count: number}>;
   createContact(data: {name?: string, number: string}): Promise<void>;
   addToExistingContact(data: {name?: string, number: string}): Promise<void>;
   deleteContact(data: {contactId: string}): Promise<void>;
-  getGroups(): Promise<{ path: string, count: number }>;
+  getGroups(): Promise<{ fileName: string, count: number }>;
 }

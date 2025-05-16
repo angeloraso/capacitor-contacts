@@ -3,14 +3,14 @@ export interface PermissionStatus {
     display: PermissionState;
 }
 export interface Contact {
-    contactId: string;
-    displayName?: string;
-    phoneNumbers: PhoneNumber[];
+    id: string;
+    name?: string;
+    phones: PhoneNumber[];
     emails: EmailAddress[];
-    photoThumbnail?: string;
-    organizationName?: string;
-    organizationRole?: string;
     birthday?: string;
+    organization?: string;
+    role?: string;
+    photo?: string;
 }
 export interface Group {
     groupId: string;
@@ -30,7 +30,8 @@ export interface ContactsPlugin {
     checkPermissions(): Promise<PermissionStatus>;
     requestPermissions(): Promise<PermissionStatus>;
     getContacts(): Promise<{
-        path: string;
+        fileName: string;
+        count: number;
     }>;
     createContact(data: {
         name?: string;
@@ -44,7 +45,7 @@ export interface ContactsPlugin {
         contactId: string;
     }): Promise<void>;
     getGroups(): Promise<{
-        path: string;
+        fileName: string;
         count: number;
     }>;
 }

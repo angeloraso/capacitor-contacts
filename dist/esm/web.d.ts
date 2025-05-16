@@ -4,7 +4,8 @@ export declare class ContactsWeb extends WebPlugin implements ContactsPlugin {
     checkPermissions(): Promise<PermissionStatus>;
     requestPermissions(): Promise<PermissionStatus>;
     getContacts(): Promise<{
-        path: string;
+        fileName: string;
+        count: number;
     }>;
     createContact(_data: {
         nam?: string;
@@ -18,7 +19,7 @@ export declare class ContactsWeb extends WebPlugin implements ContactsPlugin {
         contactId: string;
     }): Promise<void>;
     getGroups(): Promise<{
-        path: string;
+        fileName: string;
         count: number;
     }>;
 }

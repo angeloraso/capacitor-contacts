@@ -25,7 +25,7 @@ public class Contacts {
         mContext = context;
     }
 
-    public String getContacts() {
+    public JSObject getContacts() {
       ContentResolver contentResolver = mContext.getContentResolver();
 
       String[] projection = new String[] {
@@ -51,7 +51,9 @@ public class Contacts {
 
       Cursor cursor = contentResolver.query(ContactsContract.Data.CONTENT_URI, projection, selection, selectionArgs, null);
 
-      File file = new File(mContext.getCacheDir(), "contacts.json");
+      String fileName = "contacts.json";
+      Integer count = 0;
+      File file = new File(mContext.getCacheDir(), fileName);
 
       try (FileWriter writer = new FileWriter(file);
            JsonWriter jsonWriter = new JsonWriter(writer)) {
@@ -89,6 +91,8 @@ public class Contacts {
           cursor.close();
         }
 
+        count = contactMap.values().size();
+
         // Write all contacts to JSON
         for (ContactWrapper contact : contactMap.values()) {
           contact.writeToJson(jsonWriter);
@@ -100,7 +104,11 @@ public class Contacts {
         Log.e(TAG, "Error writing contacts to file", e);
       }
 
-      return file.getAbsolutePath();
+      JSObject result = new JSObject();
+      result.put("fileName", fileName);
+      result.put("count", count);
+
+      return result;
     }
 
     public void deleteContact(String contactId) {
@@ -110,6 +118,7 @@ public class Contacts {
 
   public JSObject getGroups() throws IOException {
     JSArray groups = new JSArray();
+    String fileName = "contacts_groups.json";
 
     Cursor dataCursor = mContext.getContentResolver().query(
       ContactsContract.Groups.CONTENT_URI,
@@ -162,7 +171,7 @@ public class Contacts {
 
     // Return file path and count
     JSObject result = new JSObject();
-    result.put("path", outputFile.getAbsolutePath());
+    result.put("fileName", fileName);
     result.put("count", groups.length());
 
     return result;

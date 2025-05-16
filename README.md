@@ -53,10 +53,10 @@ requestPermissions() => Promise<PermissionStatus>
 ### getContacts()
 
 ```typescript
-getContacts() => Promise<{ path: string; }>
+getContacts() => Promise<{ fileName: string; count: number; }>
 ```
 
-**Returns:** <code>Promise&lt;{ path: string; }&gt;</code>
+**Returns:** <code>Promise&lt;{ fileName: string; count: number; }&gt;</code>
 
 --------------------
 
@@ -103,10 +103,10 @@ deleteContact(data: { contactId: string; }) => Promise<void>
 ### getGroups()
 
 ```typescript
-getGroups() => Promise<{ path: string; count: number; }>
+getGroups() => Promise<{ fileName: string; count: number; }>
 ```
 
-**Returns:** <code>Promise&lt;{ path: string; count: number; }&gt;</code>
+**Returns:** <code>Promise&lt;{ fileName: string; count: number; }&gt;</code>
 
 --------------------
 
