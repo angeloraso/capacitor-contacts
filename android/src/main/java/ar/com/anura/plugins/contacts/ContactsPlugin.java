@@ -75,7 +75,7 @@ public class ContactsPlugin extends Plugin {
 
         JSObject groups = contacts.getContacts();
         JSObject res = new JSObject();
-        res.put("path", groups.getString("fileName"));
+        res.put("fileName", groups.getString("fileName"));
         res.put("count", groups.getInteger("count"));
         call.resolve(res);
     }
@@ -166,7 +166,7 @@ public class ContactsPlugin extends Plugin {
 
         JSObject groups = contacts.getGroups();
         JSObject res = new JSObject();
-        res.put("path", groups.getString("fileName"));
+        res.put("fileName", groups.getString("fileName"));
         res.put("count", groups.getInteger("count"));
         call.resolve(res);
     }
