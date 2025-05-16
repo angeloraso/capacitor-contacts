@@ -31,9 +31,9 @@
       },
       {
         "name": "getContacts",
-        "signature": "() => Promise<{ contactFilePath: string; }>",
+        "signature": "() => Promise<{ path: string; }>",
         "parameters": [],
-        "returns": "Promise<{ contactFilePath: string; }>",
+        "returns": "Promise<{ path: string; }>",
         "tags": [],
         "docs": "",
         "complexTypes": [],
@@ -89,14 +89,12 @@
       },
       {
         "name": "getGroups",
-        "signature": "() => Promise<{ groups: Group[]; }>",
+        "signature": "() => Promise<{ path: string; count: number; }>",
         "parameters": [],
-        "returns": "Promise<{ groups: Group[]; }>",
+        "returns": "Promise<{ path: string; count: number; }>",
         "tags": [],
         "docs": "",
-        "complexTypes": [
-          "Group"
-        ],
+        "complexTypes": [],
         "slug": "getgroups"
       }
     ],
@@ -118,43 +116,6 @@
             "PermissionState"
           ],
           "type": "PermissionState"
-        }
-      ]
-    },
-    {
-      "name": "Group",
-      "slug": "group",
-      "docs": "",
-      "tags": [],
-      "methods": [],
-      "properties": [
-        {
-          "name": "groupId",
-          "tags": [],
-          "docs": "",
-          "complexTypes": [],
-          "type": "string"
-        },
-        {
-          "name": "accountType",
-          "tags": [],
-          "docs": "",
-          "complexTypes": [],
-          "type": "string | undefined"
-        },
-        {
-          "name": "accountName",
-          "tags": [],
-          "docs": "",
-          "complexTypes": [],
-          "type": "string"
-        },
-        {
-          "name": "title",
-          "tags": [],
-          "docs": "",
-          "complexTypes": [],
-          "type": "string"
         }
       ]
     }

@@ -30,7 +30,7 @@ export interface ContactsPlugin {
     checkPermissions(): Promise<PermissionStatus>;
     requestPermissions(): Promise<PermissionStatus>;
     getContacts(): Promise<{
-        contactFilePath: string;
+        path: string;
     }>;
     createContact(data: {
         name?: string;
@@ -44,6 +44,7 @@ export interface ContactsPlugin {
         contactId: string;
     }): Promise<void>;
     getGroups(): Promise<{
-        groups: Group[];
+        path: string;
+        count: number;
     }>;
 }

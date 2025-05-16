@@ -53,10 +53,10 @@ requestPermissions() => Promise<PermissionStatus>
 ### getContacts()
 
 ```typescript
-getContacts() => Promise<{ contactFilePath: string; }>
+getContacts() => Promise<{ path: string; }>
 ```
 
-**Returns:** <code>Promise&lt;{ contactFilePath: string; }&gt;</code>
+**Returns:** <code>Promise&lt;{ path: string; }&gt;</code>
 
 --------------------
 
@@ -103,10 +103,10 @@ deleteContact(data: { contactId: string; }) => Promise<void>
 ### getGroups()
 
 ```typescript
-getGroups() => Promise<{ groups: Group[]; }>
+getGroups() => Promise<{ path: string; count: number; }>
 ```
 
-**Returns:** <code>Promise&lt;{ groups: Group[]; }&gt;</code>
+**Returns:** <code>Promise&lt;{ path: string; count: number; }&gt;</code>
 
 --------------------
 
@@ -119,16 +119,6 @@ getGroups() => Promise<{ groups: Group[]; }>
 | Prop          | Type                                                        |
 | ------------- | ----------------------------------------------------------- |
 | **`display`** | <code><a href="#permissionstate">PermissionState</a></code> |
-
-
-#### Group
-
-| Prop              | Type                |
-| ----------------- | ------------------- |
-| **`groupId`**     | <code>string</code> |
-| **`accountType`** | <code>string</code> |
-| **`accountName`** | <code>string</code> |
-| **`title`**       | <code>string</code> |
 
 
 ### Type Aliases
