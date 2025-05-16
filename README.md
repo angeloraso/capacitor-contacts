@@ -20,7 +20,6 @@ npx cap sync
 * [`addToExistingContact(...)`](#addtoexistingcontact)
 * [`deleteContact(...)`](#deletecontact)
 * [`getGroups()`](#getgroups)
-* [`getContactGroups()`](#getcontactgroups)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
 
@@ -54,10 +53,10 @@ requestPermissions() => Promise<PermissionStatus>
 ### getContacts()
 
 ```typescript
-getContacts() => Promise<{ contacts: Contact[]; }>
+getContacts() => Promise<{ contactFilePath: string; }>
 ```
 
-**Returns:** <code>Promise&lt;{ contacts: Contact[]; }&gt;</code>
+**Returns:** <code>Promise&lt;{ contactFilePath: string; }&gt;</code>
 
 --------------------
 
@@ -112,17 +111,6 @@ getGroups() => Promise<{ groups: Group[]; }>
 --------------------
 
 
-### getContactGroups()
-
-```typescript
-getContactGroups() => Promise<{ [key: string]: Group[]; }>
-```
-
-**Returns:** <code>Promise&lt;{ [key: string]: Group[]; }&gt;</code>
-
---------------------
-
-
 ### Interfaces
 
 
@@ -131,36 +119,6 @@ getContactGroups() => Promise<{ [key: string]: Group[]; }>
 | Prop          | Type                                                        |
 | ------------- | ----------------------------------------------------------- |
 | **`display`** | <code><a href="#permissionstate">PermissionState</a></code> |
-
-
-#### Contact
-
-| Prop                   | Type                        |
-| ---------------------- | --------------------------- |
-| **`contactId`**        | <code>string</code>         |
-| **`displayName`**      | <code>string</code>         |
-| **`phoneNumbers`**     | <code>PhoneNumber[]</code>  |
-| **`emails`**           | <code>EmailAddress[]</code> |
-| **`photoThumbnail`**   | <code>string</code>         |
-| **`organizationName`** | <code>string</code>         |
-| **`organizationRole`** | <code>string</code>         |
-| **`birthday`**         | <code>string</code>         |
-
-
-#### PhoneNumber
-
-| Prop         | Type                |
-| ------------ | ------------------- |
-| **`label`**  | <code>string</code> |
-| **`number`** | <code>string</code> |
-
-
-#### EmailAddress
-
-| Prop          | Type                |
-| ------------- | ------------------- |
-| **`label`**   | <code>string</code> |
-| **`address`** | <code>string</code> |
 
 
 #### Group

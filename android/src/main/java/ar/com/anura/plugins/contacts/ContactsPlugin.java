@@ -16,6 +16,10 @@ import com.getcapacitor.annotation.ActivityCallback;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.getcapacitor.annotation.Permission;
 import com.getcapacitor.annotation.PermissionCallback;
+
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 
@@ -74,9 +78,9 @@ public class ContactsPlugin extends Plugin {
             return;
         }
 
-        JSArray jsContacts = contacts.getContacts();
+        String path = contacts.getContacts();
         JSObject res = new JSObject();
-        res.put("contacts", jsContacts);
+        res.put("path", path);
         call.resolve(res);
     }
 
@@ -157,45 +161,18 @@ public class ContactsPlugin extends Plugin {
     }
 
     @PluginMethod
-    public void getGroups(PluginCall call) {
+    public void getGroups(PluginCall call) throws IOException {
         if (getActivity().isFinishing()) {
             String appFinishingMsg = getActivity().getString(R.string.app_finishing);
             call.reject(appFinishingMsg);
             return;
         }
 
-        JSArray groups = contacts.getGroups();
+        JSObject groups = contacts.getGroups();
         JSObject res = new JSObject();
-        res.put("groups", groups);
+        res.put("path", groups.getString("path"));
+        res.put("count", groups.getInteger("count"));
         call.resolve(res);
-    }
-
-    @PluginMethod
-    public void getContactGroups(PluginCall call) {
-        if (getActivity().isFinishing()) {
-            String appFinishingMsg = getActivity().getString(R.string.app_finishing);
-            call.reject(appFinishingMsg);
-            return;
-        }
-
-        String contactNumber = call.getString("number");
-        if (contactNumber == null) {
-            call.reject("The number is required");
-            return;
-        }
-
-        Map<String, Set<String>> contactsGroup = contacts.getContactGroups();
-        JSObject result = new JSObject();
-        for (Map.Entry<String, Set<String>> entry : contactsGroup.entrySet()) {
-            JSArray jsGroups = new JSArray();
-            Set<String> groups = entry.getValue();
-            for (String group : groups) {
-                jsGroups.put(group);
-            }
-            result.put(entry.getKey(), jsGroups);
-        }
-
-        call.resolve(result);
     }
 
     @PluginMethod

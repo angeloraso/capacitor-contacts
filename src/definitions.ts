@@ -34,10 +34,9 @@ export interface EmailAddress {
 export interface ContactsPlugin {
   checkPermissions(): Promise<PermissionStatus>;
   requestPermissions(): Promise<PermissionStatus>;
-  getContacts(): Promise<{ contacts: Contact[]}>;
+  getContacts(): Promise<{ contactFilePath: string}>;
   createContact(data: {name?: string, number: string}): Promise<void>;
   addToExistingContact(data: {name?: string, number: string}): Promise<void>;
   deleteContact(data: {contactId: string}): Promise<void>;
   getGroups(): Promise<{ groups: Group[]}>;
-  getContactGroups(): Promise<{[key: string]: Group[]}>;
 }
