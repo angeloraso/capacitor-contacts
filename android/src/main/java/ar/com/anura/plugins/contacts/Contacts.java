@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Contacts {
@@ -102,16 +103,6 @@ public class Contacts {
           if (!contactsById.containsKey(contactId)) {
             jsContact = new JSONObject();
             jsContact.put(CONTACT_ID, contactId);
-            if (settings.name()) {
-              String displayName;
-              if (displayNameIndex >= 0) {
-                displayName = contactsCursor.getString(displayNameIndex);
-                jsContact.put(DISPLAY_NAME, displayName);
-              } else {
-                Log.e(TAG, "Column not found: " + ContactsContract.Contacts.DISPLAY_NAME);
-                continue;
-              }
-            }
 
             if (settings.phones()) {
               jsContact.put(PHONE_NUMBERS, new JSONArray());
@@ -128,36 +119,43 @@ public class Contacts {
           }
 
           if (jsContact != null) {
-            String mimeType;
+            if (settings.name()) {
+              String displayName;
+
+              if (displayNameIndex >= 0) {
+                displayName = contactsCursor.getString(displayNameIndex);
+                jsContact.put(DISPLAY_NAME, displayName);
+              } else {
+                Log.e(TAG, "Column not found: " + ContactsContract.Contacts.DISPLAY_NAME);
+              }
+            }
+
+            String mimeType = "";
             if (mimeTypeIndex >= 0) {
               mimeType = contactsCursor.getString(mimeTypeIndex);
             } else {
               Log.e(TAG, "Column not found: " + ContactsContract.Data.MIMETYPE);
-              continue;
             }
 
-            String data;
+            String data = "";
             if (dataIndex >= 0) {
               data = contactsCursor.getString(dataIndex);
             } else {
               Log.e(TAG, "Column not found: " + ContactsContract.CommonDataKinds.Contactables.DATA);
-              continue;
             }
 
-            int type;
+            int type = 0;
             if (typeIndex >= 0) {
               type = contactsCursor.getInt(typeIndex);
             } else {
               Log.e(TAG, "Column not found: " + ContactsContract.CommonDataKinds.Contactables.TYPE);
-              continue;
             }
 
-            String label;
+            String label = "";
             if (labelIndex >= 0) {
               label = contactsCursor.getString(labelIndex);
             } else {
               Log.e(TAG, "Column not found: " + ContactsContract.CommonDataKinds.Contactables.LABEL);
-              continue;
             }
 
             if (settings.emails() && mimeType.equals(ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE)) {
@@ -187,12 +185,11 @@ public class Contacts {
             else if (settings.organization() && mimeType.equals(ContactsContract.CommonDataKinds.Organization.CONTENT_ITEM_TYPE)) {
               jsContact.put(ORGANIZATION_NAME, data);
               if (settings.role()) {
-                String organizationRole;
+                String organizationRole = "";
                 if (titleIndex >= 0) {
                   organizationRole = contactsCursor.getString(titleIndex);
                 } else {
                   Log.e(TAG, "Column not found: " + ContactsContract.CommonDataKinds.Organization.TITLE);
-                  continue;
                 }
 
                 if (organizationRole != null) {
@@ -201,12 +198,11 @@ public class Contacts {
               }
             }
             else if (settings.photo() && mimeType.equals(ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE)) {
-              byte[] thumbnailPhoto;
+              byte[] thumbnailPhoto = new byte[0];
               if (photoIndex >= 0) {
                 thumbnailPhoto = contactsCursor.getBlob(photoIndex);
               } else {
                 Log.e(TAG, "Column not found: " + ContactsContract.Contacts.Photo.PHOTO);
-                continue;
               }
 
               if (thumbnailPhoto != null) {
@@ -239,7 +235,7 @@ public class Contacts {
     ContentResolver contentResolver = mContext.getContentResolver();
     Cursor groupsCursor = null;
 
-    java.util.ArrayList<String> projectionList = new java.util.ArrayList<>();
+    ArrayList<String> projectionList = new ArrayList<>();
     projectionList.add(ContactsContract.Groups._ID);
 
     if (settings.title()) {
@@ -282,35 +278,41 @@ public class Contacts {
           try {
             if (groupIdIndex >= 0) {
               jsGroup.put(GROUP_ID, groupsCursor.getLong(groupIdIndex));
+            } else {
+              Log.e(TAG, "Column not found: " + ContactsContract.Groups._ID);
+              continue;
             }
 
-            if (settings.title()) {
-              if (titleIndex >= 0) {
-                jsGroup.put(GROUP_TITLE, groupsCursor.getString(titleIndex));
-              }
+            if (titleIndex >= 0) {
+              jsGroup.put(GROUP_TITLE, groupsCursor.getString(titleIndex));
+            } else {
+              Log.e(TAG, "Column not found: " + ContactsContract.Groups.TITLE);
             }
 
-            if (settings.systemId()) {
-              if (systemIdIndex >= 0) {
-                jsGroup.put(GROUP_SYSTEM_ID, groupsCursor.getString(systemIdIndex));
-              }
+            if (systemIdIndex >= 0) {
+              jsGroup.put(GROUP_SYSTEM_ID, groupsCursor.getString(systemIdIndex));
+            } else {
+              Log.e(TAG, "Column not found: " + ContactsContract.Groups.SYSTEM_ID);
             }
 
-            if (settings.notes()) {
-              if (notesIndex >= 0) {
-                jsGroup.put(GROUP_NOTES, groupsCursor.getString(notesIndex));
-              }
+            if (notesIndex >= 0) {
+              jsGroup.put(GROUP_NOTES, groupsCursor.getString(notesIndex));
+            } else {
+              Log.e(TAG, "Column not found: " + ContactsContract.Groups.NOTES);
             }
-            if (settings.accountType()) {
-              if (accountTypeIndex >= 0) {
-                jsGroup.put(GROUP_ACCOUNT_TYPE, groupsCursor.getString(accountTypeIndex));
-              }
+
+            if (accountTypeIndex >= 0) {
+              jsGroup.put(GROUP_ACCOUNT_TYPE, groupsCursor.getString(accountTypeIndex));
+            } else {
+              Log.e(TAG, "Column not found: " + ContactsContract.Groups.ACCOUNT_TYPE);
             }
-            if (settings.accountName()) {
-              if (accountNameIndex >= 0) {
-                jsGroup.put(GROUP_ACCOUNT_NAME, groupsCursor.getString(accountNameIndex));
-              }
+
+            if (accountNameIndex >= 0) {
+              jsGroup.put(GROUP_ACCOUNT_NAME, groupsCursor.getString(accountNameIndex));
+            } else {
+              Log.e(TAG, "Column not found: " + ContactsContract.Groups.ACCOUNT_NAME);
             }
+
             jsGroups.put(jsGroup);
           } catch (JSONException e) {
             Log.e(TAG, "Get groups error", e);
