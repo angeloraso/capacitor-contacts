@@ -26,15 +26,19 @@ export interface Contact {
 }
 
 export interface GroupSettings {
+  title?: boolean;
+  systemId?: boolean;
+  notes?: boolean;
   accountType?: boolean;
   accountName?: boolean;
-  title?: boolean;
 }
 export interface Group {
   id: string;
+  title?: string;
+  systemId?: string;
+  notes?: string;
   accountType?: string;
   accountName?: string;
-  title?: string;
 }
 
 export interface PhoneNumber {

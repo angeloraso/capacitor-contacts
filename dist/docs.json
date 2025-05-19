@@ -325,6 +325,27 @@
           "type": "string"
         },
         {
+          "name": "title",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "systemId",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "notes",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
           "name": "accountType",
           "tags": [],
           "docs": "",
@@ -333,13 +354,6 @@
         },
         {
           "name": "accountName",
-          "tags": [],
-          "docs": "",
-          "complexTypes": [],
-          "type": "string | undefined"
-        },
-        {
-          "name": "title",
           "tags": [],
           "docs": "",
           "complexTypes": [],
@@ -355,6 +369,27 @@
       "methods": [],
       "properties": [
         {
+          "name": "title",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "systemId",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "notes",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "boolean | undefined"
+        },
+        {
           "name": "accountType",
           "tags": [],
           "docs": "",
@@ -363,13 +398,6 @@
         },
         {
           "name": "accountName",
-          "tags": [],
-          "docs": "",
-          "complexTypes": [],
-          "type": "boolean | undefined"
-        },
-        {
-          "name": "title",
           "tags": [],
           "docs": "",
           "complexTypes": [],

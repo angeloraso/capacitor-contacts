@@ -177,18 +177,22 @@ getGroups(settings: GroupSettings) => Promise<{ groups: Group[]; }>
 | Prop              | Type                |
 | ----------------- | ------------------- |
 | **`id`**          | <code>string</code> |
+| **`title`**       | <code>string</code> |
+| **`systemId`**    | <code>string</code> |
+| **`notes`**       | <code>string</code> |
 | **`accountType`** | <code>string</code> |
 | **`accountName`** | <code>string</code> |
-| **`title`**       | <code>string</code> |
 
 
 #### GroupSettings
 
 | Prop              | Type                 |
 | ----------------- | -------------------- |
+| **`title`**       | <code>boolean</code> |
+| **`systemId`**    | <code>boolean</code> |
+| **`notes`**       | <code>boolean</code> |
 | **`accountType`** | <code>boolean</code> |
 | **`accountName`** | <code>boolean</code> |
-| **`title`**       | <code>boolean</code> |
 
 
 ### Type Aliases
