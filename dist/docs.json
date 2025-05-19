@@ -31,12 +31,21 @@
       },
       {
         "name": "getContacts",
-        "signature": "() => Promise<{ fileName: string; count: number; }>",
-        "parameters": [],
-        "returns": "Promise<{ fileName: string; count: number; }>",
+        "signature": "(settings: ContactSettings) => Promise<{ contacts: Contact[]; }>",
+        "parameters": [
+          {
+            "name": "settings",
+            "docs": "",
+            "type": "ContactSettings"
+          }
+        ],
+        "returns": "Promise<{ contacts: Contact[]; }>",
         "tags": [],
         "docs": "",
-        "complexTypes": [],
+        "complexTypes": [
+          "Contact",
+          "ContactSettings"
+        ],
         "slug": "getcontacts"
       },
       {
@@ -89,12 +98,21 @@
       },
       {
         "name": "getGroups",
-        "signature": "() => Promise<{ fileName: string; count: number; }>",
-        "parameters": [],
-        "returns": "Promise<{ fileName: string; count: number; }>",
+        "signature": "(settings: GroupSettings) => Promise<{ groups: Group[]; }>",
+        "parameters": [
+          {
+            "name": "settings",
+            "docs": "",
+            "type": "GroupSettings"
+          }
+        ],
+        "returns": "Promise<{ groups: Group[]; }>",
         "tags": [],
         "docs": "",
-        "complexTypes": [],
+        "complexTypes": [
+          "Group",
+          "GroupSettings"
+        ],
         "slug": "getgroups"
       }
     ],
@@ -109,13 +127,253 @@
       "methods": [],
       "properties": [
         {
-          "name": "display",
+          "name": "contacts",
           "tags": [],
           "docs": "",
           "complexTypes": [
             "PermissionState"
           ],
           "type": "PermissionState"
+        }
+      ]
+    },
+    {
+      "name": "Contact",
+      "slug": "contact",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "id",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "phones",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [
+            "PhoneNumber"
+          ],
+          "type": "PhoneNumber[] | undefined"
+        },
+        {
+          "name": "emails",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [
+            "EmailAddress"
+          ],
+          "type": "EmailAddress[] | undefined"
+        },
+        {
+          "name": "birthday",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "organization",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "role",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "photo",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        }
+      ]
+    },
+    {
+      "name": "PhoneNumber",
+      "slug": "phonenumber",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "label",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "number",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        }
+      ]
+    },
+    {
+      "name": "EmailAddress",
+      "slug": "emailaddress",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "label",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "address",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        }
+      ]
+    },
+    {
+      "name": "ContactSettings",
+      "slug": "contactsettings",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "name",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "phones",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "emails",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "birthday",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "organization",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "role",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "photo",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "boolean | undefined"
+        }
+      ]
+    },
+    {
+      "name": "Group",
+      "slug": "group",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "id",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "accountType",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "accountName",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "title",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string | undefined"
+        }
+      ]
+    },
+    {
+      "name": "GroupSettings",
+      "slug": "groupsettings",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "accountType",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "accountName",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "title",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "boolean | undefined"
         }
       ]
     }

@@ -1,11 +1,10 @@
 import { WebPlugin } from '@capacitor/core';
-import type { ContactsPlugin, PermissionStatus } from './definitions';
+import type { Contact, ContactsPlugin, Group, PermissionStatus } from './definitions';
 export declare class ContactsWeb extends WebPlugin implements ContactsPlugin {
     checkPermissions(): Promise<PermissionStatus>;
     requestPermissions(): Promise<PermissionStatus>;
     getContacts(): Promise<{
-        fileName: string;
-        count: number;
+        contacts: Contact[];
     }>;
     createContact(_data: {
         nam?: string;
@@ -19,7 +18,6 @@ export declare class ContactsWeb extends WebPlugin implements ContactsPlugin {
         contactId: string;
     }): Promise<void>;
     getGroups(): Promise<{
-        fileName: string;
-        count: number;
+        groups: Group[];
     }>;
 }

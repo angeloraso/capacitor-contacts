@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { WebPlugin } from '@capacitor/core';
 
-import type { ContactsPlugin, PermissionStatus } from './definitions';
+import type { Contact, ContactsPlugin, Group, PermissionStatus } from './definitions';
 
 export class ContactsWeb extends WebPlugin implements ContactsPlugin {
   async checkPermissions(): Promise<PermissionStatus> {
@@ -12,7 +12,7 @@ export class ContactsWeb extends WebPlugin implements ContactsPlugin {
     throw this.unimplemented('Not implemented on web.');
   }
 
-  async getContacts(): Promise<{ fileName: string, count: number }> {
+  async getContacts(): Promise<{ contacts: Contact[] }> {
     throw this.unimplemented('Not implemented on web.');
   }
   
@@ -28,7 +28,7 @@ export class ContactsWeb extends WebPlugin implements ContactsPlugin {
     throw this.unimplemented('Not implemented on web.');
   }
 
-  async getGroups(): Promise<{ fileName: string, count: number }> {
+  async getGroups(): Promise<{ groups: Group[] }> {
     throw this.unimplemented('Not implemented on web.');
   }
 }

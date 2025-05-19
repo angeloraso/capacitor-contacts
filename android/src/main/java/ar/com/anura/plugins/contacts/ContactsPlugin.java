@@ -6,6 +6,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import androidx.activity.result.ActivityResult;
+
+import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PermissionState;
 import com.getcapacitor.Plugin;
@@ -15,6 +17,8 @@ import com.getcapacitor.annotation.ActivityCallback;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.getcapacitor.annotation.Permission;
 import com.getcapacitor.annotation.PermissionCallback;
+
+import org.json.JSONArray;
 
 import java.io.IOException;
 
@@ -29,7 +33,7 @@ public class ContactsPlugin extends Plugin {
 
     private Contacts contacts;
 
-    static final String CONTACTS_PERMISSION = "display";
+    static final String CONTACTS_PERMISSION = "contacts";
 
     public void load() {
         Context context = getContext();
@@ -73,10 +77,11 @@ public class ContactsPlugin extends Plugin {
             return;
         }
 
-        JSObject groups = contacts.getContacts();
+        ContactSettings settings = getContactSettings(call);
+
+        JSONArray result = contacts.getContacts(settings);
         JSObject res = new JSObject();
-        res.put("fileName", groups.getString("fileName"));
-        res.put("count", groups.getInteger("count"));
+        res.put("contacts", JSArray.from(result));
         call.resolve(res);
     }
 
@@ -182,4 +187,24 @@ public class ContactsPlugin extends Plugin {
         contacts.deleteContact(contactId);
         call.resolve();
     }
+
+  private ContactSettings getContactSettings(PluginCall call) {
+    boolean name = Boolean.TRUE.equals(call.getBoolean("name"));
+    boolean phones = Boolean.TRUE.equals(call.getBoolean("phones"));
+    boolean emails = Boolean.TRUE.equals(call.getBoolean("emails"));
+    boolean birthday = Boolean.TRUE.equals(call.getBoolean("birthday"));
+    boolean organization = Boolean.TRUE.equals(call.getBoolean("organization"));
+    boolean role = Boolean.TRUE.equals(call.getBoolean("role"));
+    boolean photo = Boolean.TRUE.equals(call.getBoolean("photo"));
+
+    return new ContactSettings.Builder()
+      .name(name)
+      .phones(phones)
+      .emails(emails)
+      .birthday(birthday)
+      .organization(organization)
+      .role(role)
+      .photo(photo)
+      .build();
+  }
 }

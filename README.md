@@ -15,11 +15,11 @@ npx cap sync
 
 * [`checkPermissions()`](#checkpermissions)
 * [`requestPermissions()`](#requestpermissions)
-* [`getContacts()`](#getcontacts)
+* [`getContacts(...)`](#getcontacts)
 * [`createContact(...)`](#createcontact)
 * [`addToExistingContact(...)`](#addtoexistingcontact)
 * [`deleteContact(...)`](#deletecontact)
-* [`getGroups()`](#getgroups)
+* [`getGroups(...)`](#getgroups)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
 
@@ -50,13 +50,17 @@ requestPermissions() => Promise<PermissionStatus>
 --------------------
 
 
-### getContacts()
+### getContacts(...)
 
 ```typescript
-getContacts() => Promise<{ fileName: string; count: number; }>
+getContacts(settings: ContactSettings) => Promise<{ contacts: Contact[]; }>
 ```
 
-**Returns:** <code>Promise&lt;{ fileName: string; count: number; }&gt;</code>
+| Param          | Type                                                        |
+| -------------- | ----------------------------------------------------------- |
+| **`settings`** | <code><a href="#contactsettings">ContactSettings</a></code> |
+
+**Returns:** <code>Promise&lt;{ contacts: Contact[]; }&gt;</code>
 
 --------------------
 
@@ -100,13 +104,17 @@ deleteContact(data: { contactId: string; }) => Promise<void>
 --------------------
 
 
-### getGroups()
+### getGroups(...)
 
 ```typescript
-getGroups() => Promise<{ fileName: string; count: number; }>
+getGroups(settings: GroupSettings) => Promise<{ groups: Group[]; }>
 ```
 
-**Returns:** <code>Promise&lt;{ fileName: string; count: number; }&gt;</code>
+| Param          | Type                                                    |
+| -------------- | ------------------------------------------------------- |
+| **`settings`** | <code><a href="#groupsettings">GroupSettings</a></code> |
+
+**Returns:** <code>Promise&lt;{ groups: Group[]; }&gt;</code>
 
 --------------------
 
@@ -116,9 +124,71 @@ getGroups() => Promise<{ fileName: string; count: number; }>
 
 #### PermissionStatus
 
-| Prop          | Type                                                        |
-| ------------- | ----------------------------------------------------------- |
-| **`display`** | <code><a href="#permissionstate">PermissionState</a></code> |
+| Prop           | Type                                                        |
+| -------------- | ----------------------------------------------------------- |
+| **`contacts`** | <code><a href="#permissionstate">PermissionState</a></code> |
+
+
+#### Contact
+
+| Prop               | Type                        |
+| ------------------ | --------------------------- |
+| **`id`**           | <code>string</code>         |
+| **`name`**         | <code>string</code>         |
+| **`phones`**       | <code>PhoneNumber[]</code>  |
+| **`emails`**       | <code>EmailAddress[]</code> |
+| **`birthday`**     | <code>string</code>         |
+| **`organization`** | <code>string</code>         |
+| **`role`**         | <code>string</code>         |
+| **`photo`**        | <code>string</code>         |
+
+
+#### PhoneNumber
+
+| Prop         | Type                |
+| ------------ | ------------------- |
+| **`label`**  | <code>string</code> |
+| **`number`** | <code>string</code> |
+
+
+#### EmailAddress
+
+| Prop          | Type                |
+| ------------- | ------------------- |
+| **`label`**   | <code>string</code> |
+| **`address`** | <code>string</code> |
+
+
+#### ContactSettings
+
+| Prop               | Type                 |
+| ------------------ | -------------------- |
+| **`name`**         | <code>boolean</code> |
+| **`phones`**       | <code>boolean</code> |
+| **`emails`**       | <code>boolean</code> |
+| **`birthday`**     | <code>boolean</code> |
+| **`organization`** | <code>boolean</code> |
+| **`role`**         | <code>boolean</code> |
+| **`photo`**        | <code>boolean</code> |
+
+
+#### Group
+
+| Prop              | Type                |
+| ----------------- | ------------------- |
+| **`id`**          | <code>string</code> |
+| **`accountType`** | <code>string</code> |
+| **`accountName`** | <code>string</code> |
+| **`title`**       | <code>string</code> |
+
+
+#### GroupSettings
+
+| Prop              | Type                 |
+| ----------------- | -------------------- |
+| **`accountType`** | <code>boolean</code> |
+| **`accountName`** | <code>boolean</code> |
+| **`title`**       | <code>boolean</code> |
 
 
 ### Type Aliases
