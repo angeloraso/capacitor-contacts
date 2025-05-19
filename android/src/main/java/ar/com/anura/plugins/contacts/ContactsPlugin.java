@@ -81,7 +81,7 @@ public class ContactsPlugin extends Plugin {
 
         JSONArray result = contacts.getContacts(settings);
         JSObject res = new JSObject();
-        res.put("contacts", JSArray.from(result));
+        res.put("contacts", result);
         call.resolve(res);
     }
 
@@ -188,23 +188,23 @@ public class ContactsPlugin extends Plugin {
         call.resolve();
     }
 
-  private ContactSettings getContactSettings(PluginCall call) {
-    boolean name = Boolean.TRUE.equals(call.getBoolean("name"));
-    boolean phones = Boolean.TRUE.equals(call.getBoolean("phones"));
-    boolean emails = Boolean.TRUE.equals(call.getBoolean("emails"));
-    boolean birthday = Boolean.TRUE.equals(call.getBoolean("birthday"));
-    boolean organization = Boolean.TRUE.equals(call.getBoolean("organization"));
-    boolean role = Boolean.TRUE.equals(call.getBoolean("role"));
-    boolean photo = Boolean.TRUE.equals(call.getBoolean("photo"));
+    private ContactSettings getContactSettings(PluginCall call) {
+        boolean name = Boolean.TRUE.equals(call.getBoolean("name"));
+        boolean phones = Boolean.TRUE.equals(call.getBoolean("phones"));
+        boolean emails = Boolean.TRUE.equals(call.getBoolean("emails"));
+        boolean birthday = Boolean.TRUE.equals(call.getBoolean("birthday"));
+        boolean organization = Boolean.TRUE.equals(call.getBoolean("organization"));
+        boolean role = Boolean.TRUE.equals(call.getBoolean("role"));
+        boolean photo = Boolean.TRUE.equals(call.getBoolean("photo"));
 
-    return new ContactSettings.Builder()
-      .name(name)
-      .phones(phones)
-      .emails(emails)
-      .birthday(birthday)
-      .organization(organization)
-      .role(role)
-      .photo(photo)
-      .build();
-  }
+        return new ContactSettings.Builder()
+            .name(name)
+            .phones(phones)
+            .emails(emails)
+            .birthday(birthday)
+            .organization(organization)
+            .role(role)
+            .photo(photo)
+            .build();
+    }
 }
