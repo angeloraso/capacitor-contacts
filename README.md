@@ -14,7 +14,7 @@ npx cap sync
 <docgen-index>
 
 * [`checkPermissions()`](#checkpermissions)
-* [`requestPermissions()`](#requestpermissions)
+* [`requestPermissions(...)`](#requestpermissions)
 * [`getContacts()`](#getcontacts)
 * [`createContact(...)`](#createcontact)
 * [`addToExistingContact(...)`](#addtoexistingcontact)
@@ -40,11 +40,15 @@ checkPermissions() => Promise<PermissionStatus>
 --------------------
 
 
-### requestPermissions()
+### requestPermissions(...)
 
 ```typescript
-requestPermissions() => Promise<PermissionStatus>
+requestPermissions(options?: RequestPermissionsOptions | undefined) => Promise<PermissionStatus>
 ```
+
+| Param         | Type                                                                            |
+| ------------- | ------------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#requestpermissionsoptions">RequestPermissionsOptions</a></code> |
 
 **Returns:** <code>Promise&lt;<a href="#permissionstatus">PermissionStatus</a>&gt;</code>
 
@@ -115,10 +119,10 @@ getGroups() => Promise<{ groups: Group[]; }>
 ### getContactGroups()
 
 ```typescript
-getContactGroups() => Promise<{ [key: string]: Group[]; }>
+getContactGroups() => Promise<Record<string, string[]>>
 ```
 
-**Returns:** <code>Promise&lt;{ [key: string]: Group[]; }&gt;</code>
+**Returns:** <code>Promise&lt;<a href="#record">Record</a>&lt;string, string[]&gt;&gt;</code>
 
 --------------------
 
@@ -128,9 +132,17 @@ getContactGroups() => Promise<{ [key: string]: Group[]; }>
 
 #### PermissionStatus
 
-| Prop          | Type                                                        |
-| ------------- | ----------------------------------------------------------- |
-| **`display`** | <code><a href="#permissionstate">PermissionState</a></code> |
+| Prop                | Type                                                        |
+| ------------------- | ----------------------------------------------------------- |
+| **`readContacts`**  | <code><a href="#permissionstate">PermissionState</a></code> |
+| **`writeContacts`** | <code><a href="#permissionstate">PermissionState</a></code> |
+
+
+#### RequestPermissionsOptions
+
+| Prop              | Type                              |
+| ----------------- | --------------------------------- |
+| **`permissions`** | <code>ContactsPermission[]</code> |
 
 
 #### Contact
@@ -179,5 +191,17 @@ getContactGroups() => Promise<{ [key: string]: Group[]; }>
 #### PermissionState
 
 <code>'prompt' | 'prompt-with-rationale' | 'granted' | 'denied'</code>
+
+
+#### ContactsPermission
+
+<code>'readContacts' | 'writeContacts'</code>
+
+
+#### Record
+
+Construct a type with a set of properties K of type T
+
+<code>{ [P in K]: T; }</code>
 
 </docgen-api>

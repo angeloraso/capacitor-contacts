@@ -1,12 +1,11 @@
 package ar.com.anura.plugins.contacts;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,32 +19,34 @@ public class EditContactActivity extends AppCompatActivity {
         String selectedContactUri = getIntent().getStringExtra("contactUri");
         String number = getIntent().getStringExtra("number");
 
-        // Creates a new Intent to edit a contact
-        Intent editIntent = new Intent(Intent.ACTION_EDIT);
-        /*
-         * Sets the contact URI to edit, and the data type that the
-         * Intent must match
-         */
-        editIntent.setDataAndType(Uri.parse(selectedContactUri), ContactsContract.Contacts.CONTENT_ITEM_TYPE);
-
-        editIntent.putExtra(ContactsContract.Intents.Insert.PHONE, number);
-        editIntent.putExtra(ContactsContract.Intents.Insert.PHONE_TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_WORK);
-
         ActivityResultLauncher<Intent> editView = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    setResult(Activity.RESULT_OK, result.getData());
-                    finishActivity();
-                }
+            (result) -> {
+                setResult(result.getResultCode(), result.getData());
+                finish();
             }
         );
 
-        editView.launch(editIntent);
-    }
+        if (savedInstanceState != null) {
+            return;
+        }
 
-    private void finishActivity() {
-        finish();
+        if (selectedContactUri == null || number == null || number.trim().isEmpty()) {
+            setResult(Activity.RESULT_CANCELED);
+            finish();
+            return;
+        }
+
+        Intent editIntent = new Intent(Intent.ACTION_EDIT);
+        editIntent.setDataAndType(Uri.parse(selectedContactUri), ContactsContract.Contacts.CONTENT_ITEM_TYPE);
+        editIntent.putExtra(ContactsContract.Intents.Insert.PHONE, number);
+        editIntent.putExtra(ContactsContract.Intents.Insert.PHONE_TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_WORK);
+
+        try {
+            editView.launch(editIntent);
+        } catch (ActivityNotFoundException exception) {
+            setResult(Activity.RESULT_CANCELED);
+            finish();
+        }
     }
 }

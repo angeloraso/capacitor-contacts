@@ -1,7 +1,14 @@
-import type { PermissionState } from "@capacitor/core";
+import type { PermissionState } from '@capacitor/core';
 
 export interface PermissionStatus {
-  display: PermissionState;
+  readContacts: PermissionState;
+  writeContacts: PermissionState;
+}
+
+export type ContactsPermission = 'readContacts' | 'writeContacts';
+
+export interface RequestPermissionsOptions {
+  permissions?: ContactsPermission[];
 }
 
 export interface Contact {
@@ -17,8 +24,8 @@ export interface Contact {
 export interface Group {
   groupId: string;
   accountType?: string;
-  accountName: string;
-  title: string;
+  accountName?: string;
+  title?: string;
 }
 
 export interface PhoneNumber {
@@ -33,11 +40,11 @@ export interface EmailAddress {
 
 export interface ContactsPlugin {
   checkPermissions(): Promise<PermissionStatus>;
-  requestPermissions(): Promise<PermissionStatus>;
-  getContacts(): Promise<{ contacts: Contact[]}>;
-  createContact(data: {name?: string, number: string}): Promise<void>;
-  addToExistingContact(data: {name?: string, number: string}): Promise<void>;
-  deleteContact(data: {contactId: string}): Promise<void>;
-  getGroups(): Promise<{ groups: Group[]}>;
-  getContactGroups(): Promise<{[key: string]: Group[]}>;
+  requestPermissions(options?: RequestPermissionsOptions): Promise<PermissionStatus>;
+  getContacts(): Promise<{ contacts: Contact[] }>;
+  createContact(data: { name?: string; number: string }): Promise<void>;
+  addToExistingContact(data: { name?: string; number: string }): Promise<void>;
+  deleteContact(data: { contactId: string }): Promise<void>;
+  getGroups(): Promise<{ groups: Group[] }>;
+  getContactGroups(): Promise<Record<string, string[]>>;
 }
