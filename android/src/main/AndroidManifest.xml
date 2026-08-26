@@ -5,9 +5,18 @@
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
 
     <application>
-      <activity android:name=".CreateContactActivity" android:exported="false" />
-      <activity android:name=".AddToExistingContactActivity" android:exported="false" />
-      <activity android:name=".EditContactActivity" android:exported="false" />
+      <activity
+          android:name=".CreateContactActivity"
+          android:exported="false"
+          android:theme="@style/ContactsPluginTransparentActivity" />
+      <activity
+          android:name=".AddToExistingContactActivity"
+          android:exported="false"
+          android:theme="@style/ContactsPluginTransparentActivity" />
+      <activity
+          android:name=".EditContactActivity"
+          android:exported="false"
+          android:theme="@style/ContactsPluginTransparentActivity" />
     </application>
 
 </manifest>
